@@ -1,16 +1,16 @@
-package com.emusicstore.dao;
+package com.emusicstore.service;
 
 import com.emusicstore.model.Product;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
- * Created by parvinder.kumar on 12-01-2017.
+ * Created by parvinder.kumar on 19-01-2017.
  */
+public interface ProductService {
 
-public interface ProductDao {
-
-    List<Product> getProductList();
+     List<Product> getProductList();
 
     Product getProductById(int id);
 

@@ -1,5 +1,6 @@
-package com.emusicstore.dao;
+package com.emusicstore.dao.impl;
 
+import com.emusicstore.dao.ProductDao;
 import com.emusicstore.model.Product;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -21,37 +22,41 @@ public class ProductDaoImpl implements ProductDao {
     private SessionFactory sessionFactory;
 
 
-    public void addProduct(Product product) {
+    public List<Product> getProductList() {
         Session session=sessionFactory.getCurrentSession();
-        session.saveOrUpdate(product);
-        session.flush();
-    }
-
-    public Product getProductById(String id) {
-        Session session=sessionFactory.getCurrentSession();
-        Product product= session.get(Product.class,id);
-        session.flush();
-        return product;
-    }
-
-    public List<Product> getAllProducts() {
-        Session session=sessionFactory.getCurrentSession();
-        Query query=session.createQuery("from Product");
+        Query query=session.createQuery("from Product ");
         List<Product> products=query.list();
         session.flush();
         return products;
     }
 
-    public void deleteProducts(String id) {
-
+    public Product getProductById(int id) {
         Session session=sessionFactory.getCurrentSession();
-        session.delete(getProductById(id));
+        Product productList=session.get(Product.class,id);
         session.flush();
+        return productList;
     }
 
-    public void editProduct(Product product) {
+    public void addProduct(Product product) {
+
         Session session=sessionFactory.getCurrentSession();
         session.saveOrUpdate(product);
         session.flush();
+
+    }
+
+    public void editProduct(Product product) {
+
+        Session session=sessionFactory.getCurrentSession();
+        session.saveOrUpdate(product);
+        session.flush();
+    }
+
+    public void deleteProduct(Product product) {
+
+        Session session=sessionFactory.getCurrentSession();
+        session.delete(product);
+        session.flush();
+
     }
 }

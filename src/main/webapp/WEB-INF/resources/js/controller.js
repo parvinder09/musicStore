@@ -2,8 +2,8 @@
  * Created by parvinder.kumar on 16-01-2017.
  */
 
-var cartApp=angular.module("cartApp",[])
-.controller("cartCtrl",function ($scope,$http) {
+var cartApp=angular.module("cartApp",[]);
+cartApp.controller("cartCtrl",function ($scope,$http) {
 
     $scope.refreshCart=function (cartId) {
 
@@ -25,6 +25,7 @@ var cartApp=angular.module("cartApp",[])
         $http.put('/musicstore/rest/cart/add/'+productId).success(function (data) {
 
           $scope.refreshCart($http.get('/musicstore/rest/cart/cartId'));
+            console.log(productId);
             alert("Product added successfully");
         })
     }
