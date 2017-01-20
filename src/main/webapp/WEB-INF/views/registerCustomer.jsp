@@ -58,7 +58,7 @@
             </div>
 
             <div class="form-group">
-                <label for="billingApartmentNumber">partment Number</label>
+                <label for="billingApartmentNumber">Apartment Number</label>
                 <form:input path="billingAddress.apartmentNumber" id="billingApartmentNumber" class="form-control"></form:input>
             </div>
 

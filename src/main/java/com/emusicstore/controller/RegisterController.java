@@ -3,6 +3,8 @@ package com.emusicstore.controller;
 import com.emusicstore.model.BillingAddress;
 import com.emusicstore.model.Customer;
 import com.emusicstore.model.ShippingAddress;
+import com.emusicstore.service.CustomerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,6 +17,9 @@ import sun.java2d.pipe.ShapeSpanIterator;
  */
 @Controller
 public class RegisterController {
+
+    @Autowired
+    private CustomerService customerService;
 
     @RequestMapping("/register")
     public String registerCustomer(Model model){
@@ -32,10 +37,10 @@ public class RegisterController {
     }
 
     @RequestMapping(value = "/register",method = RequestMethod.POST)
-    public String registerCustomer(@ModelAttribute("customer") Customer customer, Model model) {
+    public String registerCustomerPost(@ModelAttribute("customer") Customer customer, Model model) {
 
         customer.setEnabled(1);
-        customerService.addCustomer();
+        customerService.addCustomer(customer);
 
         return "/registerCustomerSuccess";
     }
