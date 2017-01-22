@@ -5,6 +5,7 @@ import com.emusicstore.model.Cart;
 import com.emusicstore.model.CartItem;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,5 +41,14 @@ public class CartItemDaoImpl implements CartItemDao {
         for(CartItem cartItem: cartItemList){
             removeCartItem(cartItem);
         }
+    }
+
+    public CartItem getCartItemByProductId(int productId) {
+
+        Session session=sessionFactory.getCurrentSession();
+        Query query=session.createQuery("from CartItem where productId = ?");
+        query.setInteger(0,productId);
+        session.flush();
+        return (CartItem) query.uniqueResult();
     }
 }

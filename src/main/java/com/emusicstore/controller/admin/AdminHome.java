@@ -1,5 +1,6 @@
 package com.emusicstore.controller.admin;
 
+
 import com.emusicstore.model.Product;
 import com.emusicstore.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,9 @@ public class AdminHome {
     @Autowired
     private ProductService productService;
 
-    @RequestMapping
+   @RequestMapping
     public String adminPage(){
+
         return  "admin";
     }
 

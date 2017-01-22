@@ -45,11 +45,13 @@
         <security:form-login
             login-page="/login"
             default-target-url="/product/productList/"
+            login-processing-url="/j_spring_security_check"
             authentication-failure-url="/login?error"
             username-parameter="username"
             password-parameter="password"/>
         <security:logout
-            logout-success-url="/login?logout"/>
+            logout-success-url="/login?logout"
+            logout-url="/j_spring_security_logout"/>
     </security:http>
     <security:authentication-manager>
         <security:authentication-provider>

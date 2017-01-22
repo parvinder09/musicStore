@@ -68,4 +68,28 @@ public class CartResources {
         cartItemService.addCartItem(cartItem);
     }
 
+    @RequestMapping(value = "/remove/productId",method = RequestMethod.PUT)
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void removeItem(@PathVariable("productId") int productId){
+        CartItem cartItem=cartItemService.getCartItemByProductId(productId);
+        cartItemService.removeCartItem(cartItem);
+    }
+
+    @RequestMapping(value = "/{cartId}",method = RequestMethod.DELETE)
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void clearCart(@PathVariable("catdId") int cartId){
+        Cart cart=cartService.getCartById(cartId);
+        cartItemService.removeAllCartItems(cart);
+
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST,reason = "Illegal request,Please verify your payload")
+    public void handleClientErrors(Exception e){}
+
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR,reason = "Internal Server Error")
+    public void handleServerError(Exception e){}
+
+
 }
