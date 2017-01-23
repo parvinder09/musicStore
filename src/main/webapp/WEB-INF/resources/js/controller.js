@@ -9,7 +9,7 @@ cartApp.controller("cartCtrl",function ($scope,$http) {
 
         $http.get('/musicstore/rest/cart/'+$scope.cartId).success(function (data) {
             $scope.cart=data;
-        })
+        });
     };
 
     $scope.clearCart=function () {
@@ -23,6 +23,7 @@ cartApp.controller("cartCtrl",function ($scope,$http) {
     
     $scope.addToCart=function (productId) {
         $http.put('/musicstore/rest/cart/add/'+productId).success(function () {
+            console.log("Product added");
             alert("Product added successfully");
         })
     };
@@ -35,8 +36,8 @@ cartApp.controller("cartCtrl",function ($scope,$http) {
 
     $scope.calGrandTotal=function () {
         var grandTotal=0;
-        for(var i=0;i<$scope.cart.cartItems.length;i++){
-            grandTotal+=$scope.cart.cartItems[i].totalPrice;
+        for(var i=0;i<$scope.cart.cartItemList.length;i++){
+            grandTotal+=$scope.cart.cartItemList[i].totalPrice;
         }
         return grandTotal;
     }

@@ -10,6 +10,7 @@ import com.emusicstore.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.method.P;
+import org.springframework.security.authentication.dao.SystemWideSaltSource;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -22,7 +23,7 @@ import java.util.List;
  * Created by parvinder.kumar on 21-01-2017.
  */
 @Controller
-@RequestMapping("/cart/rest")
+@RequestMapping("/rest/cart")
 public class CartResources {
 
     @Autowired
@@ -66,6 +67,8 @@ public class CartResources {
         cartItem.setTotalPrice(product.getProductPrice()*cartItem.getQuantity());
         cartItem.setCart(cart);
         cartItemService.addCartItem(cartItem);
+        System.out.print("add cart");
+
     }
 
     @RequestMapping(value = "/remove/productId",method = RequestMethod.PUT)

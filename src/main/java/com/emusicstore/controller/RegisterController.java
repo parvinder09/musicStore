@@ -42,6 +42,6 @@ public class RegisterController {
         customer.setEnabled(1);
         customerService.addCustomer(customer);
 
-        return "/registerCustomerSuccess";
+        return "registerCustomerSuccess";
     }
 }
