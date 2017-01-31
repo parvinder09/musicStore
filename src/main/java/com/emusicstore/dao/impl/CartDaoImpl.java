@@ -19,7 +19,7 @@ public class CartDaoImpl implements CartDao {
 
     public Cart getCartById(int cartId) {
         Session session=sessionFactory.getCurrentSession();
-
+        System.out.print("cart dao");
         return  session.get(Cart.class,cartId);
     }
 

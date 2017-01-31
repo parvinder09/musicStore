@@ -13,6 +13,12 @@
         <mvc:argument-resolvers>
             <bean class="org.springframework.security.web.bind.support.AuthenticationPrincipalArgumentResolver"/>
         </mvc:argument-resolvers>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <!-- Add prefix to JSON response to prevent JSON hijacking -->
+                <property name="prefixJson" value="true" />
+            </bean>
+        </mvc:message-converters>
     </mvc:annotation-driven>
 
     <!--View Resolver-->

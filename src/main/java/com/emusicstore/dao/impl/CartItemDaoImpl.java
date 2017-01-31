@@ -37,8 +37,8 @@ public class CartItemDaoImpl implements CartItemDao {
 
     public void removeAllCartItems(Cart cart) {
 
-        List<CartItem> cartItemList=cart.getCartItemList();
-        for(CartItem cartItem: cartItemList){
+        List<CartItem> cartItems=cart.getCartItems();
+        for(CartItem cartItem: cartItems){
             removeCartItem(cartItem);
         }
     }

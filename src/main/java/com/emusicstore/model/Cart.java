@@ -12,7 +12,7 @@ import java.util.Map;
  * Created by parvinder.kumar on 15-01-2017.
  */
 @Entity
-public class Cart implements Serializable{
+public class Cart implements Serializable {
 
 
     private static final long serialVersionUID = 7947563876152764620L;
@@ -21,8 +21,8 @@ public class Cart implements Serializable{
     @GeneratedValue
     private int cartId;
 
-    @OneToMany(mappedBy = "cart",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<CartItem> cartItemList;
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<CartItem> cartItems;
 
     @OneToOne
     @JoinColumn(name = "customerId")
@@ -39,12 +39,12 @@ public class Cart implements Serializable{
         this.cartId = cartId;
     }
 
-    public List<CartItem> getCartItemList() {
-        return cartItemList;
+    public List<CartItem> getCartItems() {
+        return cartItems;
     }
 
-    public void setCartItemList(List<CartItem> cartItemList) {
-        this.cartItemList = cartItemList;
+    public void setCartItems(List<CartItem> cartItems) {
+        this.cartItems = cartItems;
     }
 
     public Customer getCustomer() {

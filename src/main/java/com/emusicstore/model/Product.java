@@ -16,41 +16,41 @@ import java.util.List;
  */
 @Entity
 @Table(name="emusicstore")
-public class Product implements Serializable{
+public class Product implements Serializable {
 
 
     private static final long serialVersionUID = -1176316600874216343L;
 
     @Id
     @GeneratedValue
-    @Column(name="productid")
+    @Column(name = "productid")
     private int productId;
-    @Column(name="productname")
+    @Column(name = "productname")
     @NotEmpty(message = "The product name must not be null.")
     private String productName;
-    @Column(name="productcategory")
+    @Column(name = "productcategory")
     private String productCategory;
-    @Column(name="productdescription")
+    @Column(name = "productdescription")
     private String productDescription;
-    @Column(name="productprice")
-    @Min(value=0,message = "The Product Price must not be less than zero.")
+    @Column(name = "productprice")
+    @Min(value = 0, message = "The Product Price must not be less than zero.")
     private double productPrice;
-    @Column(name="productcondition")
+    @Column(name = "productcondition")
     private String productCondition;
-    @Column(name="productstatus")
+    @Column(name = "productstatus")
     private String productStatus;
-    @Column(name="unitinstock")
-    @Min(value=0,message = "The Product unit in stock must not be less than zero.")
+    @Column(name = "unitinstock")
+    @Min(value = 0, message = "The Product unit in stock must not be less than zero.")
     private int unitinstock;
-    @Column(name="productmanufacturer")
+    @Column(name = "productmanufacturer")
     private String productManufacturer;
 
     @Transient
     private MultipartFile productImage;
 
-    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIgnore
-    private List<CartItem> cartItemList;
+    private List<CartItem> cartItems;
 
     public MultipartFile getProductImage() {
         return productImage;
@@ -132,11 +132,11 @@ public class Product implements Serializable{
         this.productManufacturer = productManufacturer;
     }
 
-    public List<CartItem> getCartItemList() {
-        return cartItemList;
+    public List<CartItem> getCartItems() {
+        return cartItems;
     }
 
-    public void setCartItemList(List<CartItem> cartItemList) {
-        this.cartItemList = cartItemList;
+    public void setCartItems(List<CartItem> cartItems) {
+        this.cartItems = cartItems;
     }
 }

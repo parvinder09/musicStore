@@ -7,6 +7,7 @@ import com.emusicstore.service.CartItemService;
 import com.emusicstore.service.CartService;
 import com.emusicstore.service.CustomerService;
 import com.emusicstore.service.ProductService;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.method.P;
@@ -38,10 +39,19 @@ public class CartResources {
     @Autowired
     private CartItemService cartItemService;
 
-    @RequestMapping("/{cartId}")
-    public @ResponseBody
-    Cart getCartById(@PathVariable(value = "cartId") int cartId){
 
+    @RequestMapping(value = "/greeting",method = RequestMethod.GET,produces = "application/json")
+    public @ResponseBody
+    String greeting() {
+        return "testing rest";
+    }
+
+
+
+
+    @RequestMapping("/{cartId}")
+    public @ResponseBody Cart getCartById(@PathVariable(value = "cartId") int cartId){
+        System.out.println(cartService.getCartById(cartId));
         return  cartService.getCartById(cartId);
     }
 
@@ -51,7 +61,7 @@ public class CartResources {
         Customer customer=customerService.getCustomerByUsername(activeUser.getUsername());
         Cart cart=customer.getCart();
         Product product=productService.getProductById(productId);
-        List<CartItem> cartItems=cart.getCartItemList();
+        List<CartItem> cartItems=cart.getCartItems();
 
         for (int i=0;i<cartItems.size();i++){
             if(product.getProductId()==cartItems.get(i).getProduct().getProductId()){
@@ -93,6 +103,5 @@ public class CartResources {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR,reason = "Internal Server Error")
     public void handleServerError(Exception e){}
-
 
 }
