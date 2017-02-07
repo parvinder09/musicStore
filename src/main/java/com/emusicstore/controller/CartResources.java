@@ -10,6 +10,7 @@ import com.emusicstore.service.ProductService;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.security.access.method.P;
 import org.springframework.security.authentication.dao.SystemWideSaltSource;
 import org.springframework.security.core.userdetails.User;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.*;
 import java.util.List;
 
 /**
@@ -40,7 +42,7 @@ public class CartResources {
     private CartItemService cartItemService;
 
 
-    @RequestMapping(value = "/greeting",method = RequestMethod.GET,produces = "application/json")
+    @RequestMapping(value = "/greeting",method = RequestMethod.GET)
     public @ResponseBody
     String greeting() {
         return "testing rest";
@@ -49,9 +51,9 @@ public class CartResources {
 
 
 
-    @RequestMapping("/{cartId}")
+    @RequestMapping(value = "/{cartId}")
     public @ResponseBody Cart getCartById(@PathVariable(value = "cartId") int cartId){
-        System.out.println(cartService.getCartById(cartId));
+        System.out.println("testing cart rest");
         return  cartService.getCartById(cartId);
     }
 

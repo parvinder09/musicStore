@@ -1,8 +1,10 @@
 package com.emusicstore.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
@@ -12,6 +14,7 @@ import java.util.Map;
  * Created by parvinder.kumar on 15-01-2017.
  */
 @Entity
+@XmlRootElement
 public class Cart implements Serializable {
 
 
